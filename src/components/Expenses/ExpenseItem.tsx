@@ -15,11 +15,13 @@ type ExpenseItemPropsType = {
 };
 
 const ExpenseItem = (props: ExpenseItemPropsType) => {
-  const { title, amount, date } = props.params;
-  const clickHandler = (e: React.MouseEvent<HTMLButtonElement>) => {
-      const savedValue = e.currentTarget.value
-      return savedValue
-  }
+  const { amount, date } = props.params;
+
+  const [title, setTitle] = React.useState<string>(props.params.title);
+
+  const clickHandler = () => {
+    setTitle("Updated!");
+  };
 
   return (
     <Card className="expense-item">
