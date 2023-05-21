@@ -1,8 +1,8 @@
 import React from "react";
 import "./Expenses.css";
-import ExpenseItem from "./ExpenseItem";
 import Card from "../UI/Card";
 import ExpensesFilter from "../ExpenseFilter/ExpensesFilter";
+import ExpensesList from "./ExpensesList";
 
 export type ExpenseType = {
   id: string;
@@ -32,9 +32,7 @@ const Expenses = ({ expenses }: ExpensesPropsType) => {
         onFilterChange={filterChangeHandler}
         selectedValue={selectedYear}
       />
-      {filteredExpenses.map((e) => {
-        return <ExpenseItem key={e.id} params={e} />;
-      })}
+      <ExpensesList expenses={filteredExpenses} />
     </Card>
   );
 };

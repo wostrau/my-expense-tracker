@@ -5,9 +5,10 @@ export type ExpenseDataFormType = { title: string; amount: number; date: Date };
 
 type ExpenseFormPropsType = {
   onSaveExpenseData: (arg: ExpenseDataFormType) => void;
+  onCancel: () => void
 };
 
-const ExpenseForm = ({ onSaveExpenseData }: ExpenseFormPropsType) => {
+const ExpenseForm = ({ onSaveExpenseData, onCancel }: ExpenseFormPropsType) => {
   const [enteredTitle, setEnteredTitle] = React.useState("");
   const [enteredAmount, setEnteredAmount] = React.useState("");
   const [enteredDate, setEnteredDate] = React.useState("");
@@ -73,6 +74,9 @@ const ExpenseForm = ({ onSaveExpenseData }: ExpenseFormPropsType) => {
         </div>
       </div>
       <div className="new-expense__actions">
+        <button type="button" onClick={onCancel}>
+          Cancel
+        </button>
         <button type="submit">Add Expense</button>
       </div>
     </form>

@@ -8,18 +8,28 @@ type NewExpensePropsType = {
 };
 
 const NewExpense = ({ onAddExpense }: NewExpensePropsType) => {
-  const saveExpenseDataHandler = (EnteredExpenseData: ExpenseDataFormType) => {
-    const expenseData = {
-      ...EnteredExpenseData,
-      id: Math.floor(Math.random() * 1001).toString(),
-    };
+  const [isEditing, setIsEditing] = React.useState(false);
 
-    onAddExpense(expenseData);
+  const saveExpenseDataHandler = (EnteredExpenseData: ExpenseDataFormType) => {
+    const newId = Math.floor(Math.random() * 1001).toString();
+    onAddExpense({ id: newId, ...EnteredExpenseData });
+    setIsEditing(false);
   };
+
+  const startEditingHandler = () => setIsEditing(true);
+  const stopEditingHandler = () => setIsEditing(false);
 
   return (
     <div className="new-expense">
-      <ExpenseForm onSaveExpenseData={saveExpenseDataHandler} />
+      {!isEditing && (
+        <button onClick={startEditingHandler}>Add New Expense</button>
+      )}
+      {isEditing && (
+        <ExpenseForm
+          onSaveExpenseData={saveExpenseDataHandler}
+          onCancel={stopEditingHandler}
+        />
+      )}
     </div>
   );
 };
