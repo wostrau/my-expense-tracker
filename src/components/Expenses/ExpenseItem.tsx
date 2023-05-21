@@ -15,13 +15,7 @@ type ExpenseItemPropsType = {
 };
 
 const ExpenseItem = (props: ExpenseItemPropsType) => {
-  const { amount, date } = props.params;
-
-  const [title, setTitle] = React.useState<string>(props.params.title);
-
-  const clickHandler = () => {
-    setTitle("Updated!");
-  };
+  const { title, amount, date } = props.params;
 
   return (
     <Card className="expense-item">
@@ -30,7 +24,6 @@ const ExpenseItem = (props: ExpenseItemPropsType) => {
         <h2>{title}</h2>
       </div>
       <div className="expense-item__price">${amount}</div>
-      <button onClick={clickHandler}>Change Title</button>
     </Card>
   );
 };
