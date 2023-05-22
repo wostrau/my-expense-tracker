@@ -1,13 +1,9 @@
 import React from "react";
 import ExpenseItem from "./ExpenseItem";
-import { ExpenseType } from "./Expenses";
+import { ExpensesPropsType } from "./Expenses";
 import "./ExpensesList.css";
 
-type ExpensesListPropsType = {
-  expenses: Array<ExpenseType>;
-};
-
-const ExpensesList = ({ expenses }: ExpensesListPropsType) => {
+const ExpensesList = ({ expenses }: ExpensesPropsType) => {
   if (expenses.length === 0) {
     return <h2 className="expenses-list__fallback">Found no expenses</h2>;
   }
